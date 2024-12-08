@@ -170,12 +170,17 @@ function createQuestion({ text, options, onChange }) { // Изменено quest
     const questionLabel = createElement('label', { for: questionId }, text); // Изменено questionText на text
     questionDiv.appendChild(questionLabel);
     console.log(options); // Лог для проверки создания вопроса
-    
+    const div = createElement('div', { class: 'optionDiv' });
     options.forEach(option => {
         const inputId = option.value; // Используем значение варианта как id
         const input = createElement('input', { type: 'radio', id: inputId, name: questionId, value: inputId });
         const label = createElement('label', { for: inputId }, option.text);
-        questionDiv.append(input, label);
+        const secondDiv = createElement('div', { class: 'secondOptionDiv' });
+        questionDiv.append(div);
+        div.append(secondDiv);
+        secondDiv.append(label,input);
+        
+        
     });
     
     surveyContainer.appendChild(questionDiv);
